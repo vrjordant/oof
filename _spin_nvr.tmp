@@ -1,0 +1,9 @@
+never a {    /* !([] ((nr_leaders==0))) */
+T0_init:
+	do
+	:: atomic { (! (((nr_leaders==0)))) -> assert(!(! (((nr_leaders==0))))) }
+	:: (1) -> goto T0_init
+	od;
+accept_all:
+	skip
+}

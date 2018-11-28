@@ -1,8 +1,8 @@
 # define N 5 /* number of processes in the ring */
 # define L 10 /* size of buffer (>= 2*N) */
-ltl a{<>nr_leaders == 1}
 byte I; /* will be used in init for assigning ids to nodes */
 byte nr_leaders;
+ltl a{<> (nr_leaders == 1)}
 
 mtype = { one , two , winner }; /* symb . Msg . Names */
 chan q[N] = [L] of { mtype , byte }; /* asynchronous channels */
@@ -52,8 +52,6 @@ proctype nnode ( chan inp , out; byte mynumber )
                 :: else ->
                     printf (" MSC : LEADER \n");
                     nr_leaders++;
-                    assert(mynumber == N);
-                    assert(nr_leaders == 1);
             fi;
             if
                 :: know_winner

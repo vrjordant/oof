@@ -7,7 +7,7 @@ mtype = { one , two , winner }; /* symb . Msg . Names */
 chan q[N] = [L] of { mtype , byte }; /* asynchronous channels */
 
 proctype nnode ( chan inp , out; byte mynumber )
-{ bit Active = 1, know_winner = 0;
+{   bit Active = 1, know_winner = 0;
     byte nr , maximum = mynumber , neighbourR ;
 
     xr inp ; /* channel assertion : exclusive recv access to channel in */
@@ -15,7 +15,7 @@ proctype nnode ( chan inp , out; byte mynumber )
 
     printf (" MSC : %d\n", mynumber );
     out ! one ( mynumber );
-    end : do
+ end :      do
         :: inp ? one (nr) ->
             if
                 :: Active ->
@@ -51,7 +51,7 @@ proctype nnode ( chan inp , out; byte mynumber )
                 :: else ->
                     printf (" MSC : LEADER \n");
                     nr_leaders++;
-                    assert(mynumber == N);
+                    assert(mynumber == maximum);
                     assert(nr_leaders == 1);
             fi;
             if

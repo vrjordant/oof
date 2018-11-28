@@ -1,6 +1,6 @@
 # define N 5 /* number of processes in the ring */
 # define L 10 /* size of buffer (>= 2*N) */
-ltl a{<>[]nr_leaders == 1}
+ltl a{<>[](nr_leaders == 0)}
 byte I; /* will be used in init for assigning ids to nodes */
 byte nr_leaders;
 
